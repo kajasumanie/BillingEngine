@@ -62,7 +62,7 @@ namespace BillEngineWithTDD
             string expected = "Customer Name: FirstName SecondName" +
                 "\nPhone number: 711535724" +
                 "\nAddress: Address1, Address2." +
-                "\nTotal Amount to Pay: LKR: 178.6";
+                "\nTotal Amount to Pay: LKR: 8.6";
 
             // Act
             Sut.GnerateFinalForPackageA(cdrForTest);

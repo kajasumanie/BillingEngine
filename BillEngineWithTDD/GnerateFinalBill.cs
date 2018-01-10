@@ -18,23 +18,23 @@ namespace BillEngineWithTDD
             int REceivePhoneEx = Convert.ToInt32(nm.ReceiVePhoneNo.ToString().Substring(0, 3));
          double DurationInMinite =nm.DuRation.Minute;
           
-                    if (Convert.ToDateTime("08:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("20:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+                    if (Convert.ToDateTime("10:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("18:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
                     {
                         WithOutTaxbill = nm.Bill + DurationInMinite * 5;
                         nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
                     }
 
-                    else if (Convert.ToDateTime("08:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("20:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+                    else if (Convert.ToDateTime("10:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("18:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
                     {
                         WithOutTaxbill = nm.Bill + DurationInMinite * 4;
                         nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
                     }
-                    else if (Convert.ToDateTime("08:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("20:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+                    else if (Convert.ToDateTime("10:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("18:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
                     {
                         WithOutTaxbill = nm.Bill + DurationInMinite * 3;
                         nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
                     }
-                    else if (Convert.ToDateTime("08:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("20:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+                    else if (Convert.ToDateTime("10:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("18:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
                     {
                         WithOutTaxbill = nm.Bill + DurationInMinite * 2;
                         nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
@@ -54,6 +54,7 @@ namespace BillEngineWithTDD
 
         public double GnerateFinalForPackageB(CDR cdrForTest)
         {
+            //•	Make the first minute of all local off-peak calls free of charge for Package B
             int PhoneNoEx = Convert.ToInt32(nm.PhOneNo.ToString().Substring(0, 3));
             // int PhoneNoEx = nm.PhOneNo.Substring(0, 3);
             int REceivePhoneEx = Convert.ToInt32(nm.ReceiVePhoneNo.ToString().Substring(0, 3));
@@ -67,8 +68,16 @@ namespace BillEngineWithTDD
 
             else if (Convert.ToDateTime("08:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("20:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
             {
-                WithOutTaxbill = nm.Bill + DurationInSecound * 5;
-                nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
+                if(DurationInSecound<=60)
+                {
+                    nm.Bill = nm.Bill;
+                }
+                else
+                {
+                    WithOutTaxbill = nm.Bill + DurationInSecound * 5-(DurationInSecound*60*5);
+                    nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
+                }
+               
             }
             else if (Convert.ToDateTime("08:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("20:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
             {
@@ -94,23 +103,23 @@ namespace BillEngineWithTDD
             // int PhoneNoEx = nm.PhOneNo.Substring(0, 3);
             int REceivePhoneEx = Convert.ToInt32(nm.ReceiVePhoneNo.ToString().Substring(0, 3));
             double DurationInMinite = nm.DuRation.Minute;
-            if (Convert.ToDateTime("08:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("20:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+            if (Convert.ToDateTime("09:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("18:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
             {
                 WithOutTaxbill = nm.Bill + DurationInMinite * 3;
                 nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
             }
 
-            else if (Convert.ToDateTime("08:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("20:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+            else if (Convert.ToDateTime("09:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("18:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
             {
                 WithOutTaxbill = nm.Bill + DurationInMinite * 2;
                 nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
             }
-            else if (Convert.ToDateTime("08:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("20:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+            else if (Convert.ToDateTime("09:00") <= nm.StaRtTime && nm.StaRtTime <= Convert.ToDateTime("18:00") && (PhoneNoEx == REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
             {
                 WithOutTaxbill = nm.Bill + DurationInMinite * 2;
                 nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
             }
-            else if (Convert.ToDateTime("08:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("20:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
+            else if (Convert.ToDateTime("09:00") >= nm.StaRtTime && nm.StaRtTime >= Convert.ToDateTime("18:00") && (PhoneNoEx != REceivePhoneEx) && (nm.PhOneNo != nm.ReceiVePhoneNo))
             {
                 WithOutTaxbill = nm.Bill + DurationInMinite * 1;
                 nm.Bill = WithOutTaxbill + (WithOutTaxbill % 20);
